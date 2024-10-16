@@ -7,9 +7,10 @@ public class SolutionHomeWork09 {
         int[][] matrix = new int[4][4];
         Random random = new Random();
         System.out.println("Матриця 4x4:");
+        int len = matrix.length;
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[i].length; j++) {
-                matrix[i][j] = random.nextInt(2) + 1;
+                matrix[i][j] = random.nextInt(5) + 1;
                 System.out.print(matrix[i][j] + " ");
             }
             System.out.println();
@@ -33,113 +34,58 @@ public class SolutionHomeWork09 {
         System.out.println("Сума елементів у непарних рядках (рядок 1, 3): " + sumRowEven);
         System.out.println("Добуток елементів у парних стовпцях (стовпець 0, 2): " + prodColEven);
         System.out.println("Добуток елементів у непарних стовпцях (стовпець 1, 3): " + prodColOdd);
+        int result = 1;
+        int sum0 = 0; //сумма 1 строки
+        int sum = 0;
 
-//        int sumrow0 = 0;
-//        int sum = 0;
-//        int str = 0;
-//        while (sumrow0 == sum) {
-//            sum = 0;
-//            sumrow0 = 0;
-//            for (int j = 0; j < matrix.length; j++) {
-//                sumrow0 += matrix[0][j];
-//                sum += matrix[str][j];
-//            }
-//            str++;
-//            System.out.println("Сумма елементов строки " + str + " равна: " + sumrow0);
-//            System.out.println("Сумма елементов строки " + str + " равна: " + sum);
-//        }
-
-//            for (int i = 0; i < matrix.length; i++) {
-//                for (int j = 0; j < matrix[i].length; j++) {
-//                    sumrow0 += matrix[0][j];
-//                    sum += matrix[i][j];
-//                }
-//                k = i;
-//                System.out.println("Сумма елементов строки " +k+ " равна: " +sumrow0);
-//                System.out.println("Сумма елементов строки " +k+ " равна: " +sum);
-//            }
-//        }
-//        int sumrow0 = 0;
-//        int sumvalue = 0;
-//        sumvalue = 0;
-//        for (int i = 0; i < matrix.length; i++) {
-//            for (int j = 0; j < matrix[i].length; j++) {
-//                if (i == 0) {
-//                    sumrow0 += matrix[i][j];
-//                } else if ( i == 1 )
-//                    sumvalue += matrix[i][j];
-//            }
-//        }
-//        System.out.println(sumrow0);
-//        System.out.println(sumvalue);
-        int sumRow0 = 0;
-        int sumRow1 = 0;
-        int sumRow2 = 0;
-        int sumRow3 = 0;
-        int sumValue = 0;
-        int sumCol0 = 0;
-        int sumCol1 = 0;
-        int sumCol2 = 0;
-        int sumCol3 = 0;
-        int i = 0;
-        while (i<matrix.length){
-            for (int j = 0; j < matrix.length; j++) {
-               sumValue += matrix[i][j];
-            }
-            if (i ==0){
-                sumRow0 = sumValue;
-            } else if (i ==1) {
-                sumRow1 = sumValue;
-            } else if (i == 2) {
-                sumRow2 = sumValue;
-            } else if (i == 3) {
-                sumRow3 = sumValue;
-            }
-            i++;
-            sumValue = 0;
+        for (int j = 0; j < len; j++) {
+            sum0 += matrix[0][j];
         }
-        System.out.println(sumRow0);
-        System.out.println(sumRow1);
-        System.out.println(sumRow2);
-        System.out.println(sumRow3);
-        i = 0;
-        while (i<matrix.length){
+        for (int i = 0; i < len; i++) { //count sum for row
+            sum = 0;
             for (int j = 0; j < matrix[i].length; j++) {
-                sumValue += matrix[j][i];
+                sum += matrix[i][j];
             }
-            if (i ==0){
-                sumCol0 = sumValue;
-            } else if (i ==1) {
-                sumCol1 = sumValue;
-            } else if (i == 2) {
-                sumCol2 = sumValue;
-            } else if (i == 3) {
-                sumCol3 = sumValue;
-            }
-            i++;
-            sumValue = 0;
+            System.out.println("sum of row" + i + " " + sum);
+//            if (sum != sum0) {
+//                result = 0;
+//                break;
+//            }
         }
-        int sumD1 = 0;
-        int sumD2 = 0;
-        System.out.println("sumCol0 " + sumCol0);
-        System.out.println(sumCol1);
-        System.out.println(sumCol2);
-        System.out.println(sumCol3);
-        for (int k = 0; k < matrix.length; k++) {
-            for (int j = 0; j < matrix[k].length; j++) {
-                if (k==j){
-                    sumD1 += matrix[k][j];
-                } else if (( k == 3 && j==0)
-                        ||(k == 2 && j == 1)
-                        ||(k == 1 && j == 2)
-                        ||(k == 0 && j == 3)) {
-                    sumD2 += matrix[k][j];
+        if (result == 1) {
+            for (int j = 0; j < len; j++) { //count sum for column
+                sum = 0;
+                for (int i = 0; i < len; i++) {
+                    sum += matrix[i][j];
                 }
+                System.out.println("sum of colum" + j + " " + sum);
+//                if (sum != sum0) {
+//                    result = 0;
+//                    break;
+//                }
             }
         }
-        System.out.println("sumD1 " + sumD1);
-        System.out.println("sumD2 " + sumD2);
-
+        if (result == 1) {
+            sum = 0;
+            for (int i = 0; i < len; i++) {
+                sum += matrix[i][i];
+            }
+            System.out.println("sum of diag1 " + sum);
+//            if (sum != sum0) {
+//                result = 0;
+//                break;
+//            }
+        }
+        if (result == 1) {
+            sum = 0;
+            for (int i = 0; i < len; i++) {
+                sum += matrix[i][len - i - 1];
+            }
+            System.out.println("sum of diag2 " + sum);
+//            if (sum != sum0) {
+//                result = 0;
+//                break;
+//            }
+        }
     }
-
 }
