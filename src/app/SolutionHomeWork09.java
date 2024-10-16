@@ -90,7 +90,7 @@ public class SolutionHomeWork09 {
             if (sum != sum0) {
                 result = 0;
                 System.out.println("Матриця не є магічним квадратом.");
-            }
+            } else System.out.println("Матриця є магічним квадратом.");
         }
     }
 }
